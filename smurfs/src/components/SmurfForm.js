@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import Loader from 'react-loader-spinner'
+
+import { getSmurfs, postSmurfs } from '../actions/smurfActions'
 
 
 
@@ -21,11 +24,40 @@ const SmurfForm = (props) => {
                 />
             )}
                 <div>
-                    <label className="smurf name"{...smurf.props.smurfName}></label>
-                    <label className="smurf age"{...smurf.props.smurfAge}></label>
-                    <label className="smurf height"{...smurf.props.smurfHeight}></label>
+                    <label className="smurf name"{...props.getSmurfs.smurfName}></label>
+                    <label className="smurf age"{...props.getSmurfs.smurfAge}></label>
+                    <label className="smurf height"{...props.getSmurfs.smurfHeight}></label>
                 </div>
-                    <button onClick={props.getSmurfs}>Create a New Smurf For Your Village</button>
+                <div className="input form">
+                    <label className='label'>Smurf Name</label>
+                        <field className='input'
+                        name="smurfName"
+                        component="input"
+                        type="text"
+                        placeholder="Enter smurf name"
+                        />
+                </div>
+
+                <div className="input form">
+                    <label className='label'>Smurf age</label>
+                        <field className='input'
+                        name="smurfAge"
+                        component="input"
+                        type="text"
+                        placeholder="Enter smurf age"
+                        />
+                </div>
+
+                <div className="input form">
+                    <label className='label'>Smurf Height</label>
+                        <field className='input'
+                        name="smurfHeight"
+                        component="input"
+                        type="text"
+                        placeholder="Enter smurf height"
+                        />
+                </div>
+                    <button onClick={props.postSmurfs}>Create a New Smurf For Your Village</button>
             </form>
         </div>
     )
@@ -40,4 +72,4 @@ const mapStateToProps = state => {
 };
 
 export default connect (
-    mapStateToProps, { getSmurfs })(SmurfForm)
+    mapStateToProps, { getSmurfs, postSmurfs })(SmurfForm)

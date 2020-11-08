@@ -1,4 +1,4 @@
-import { GET_SMURF_START, GET_SMURF_SUCCESS, GET_SMURF_FAILURE } from '../actions/smurfActions';
+import { GET_SMURF_START, GET_SMURF_SUCCESS, POST_SMURF_START, POST_SMURF_SUCCESS } from '../actions/smurfActions';
 
 const initialState = {
     isLoading: false,
@@ -20,6 +20,18 @@ export const smurfReducer = (state = initialState, action) => {
                 smurf: action.payload,
                 error: action.payload
             };
+        case POST_SMURF_START:
+            return {
+                ...state,
+                isLoading: true,
+                error: ''
+            }
+        case POST_SMURF_SUCCESS:
+            return {
+                isLoading: false,
+                smurf: action.payload,
+                error: action.payload
+            }
         default:
             return state;
     };
